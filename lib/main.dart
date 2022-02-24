@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+        primarySwatch: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'youtube player',url: 'https://www.youtube.com/watch?v=_ih7vT0CrLE',),
+      home: MyHomePage(title: 'youtube player',url: 'https://www.youtube.com/watch?v=7e_q3Wh-Iy0',),
     );
   }
 }
@@ -68,21 +69,146 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       builder: (context, player) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
+          backgroundColor: const Color(0xFF343434),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(
+                height: 10,
+              ),
+              _buildProgressBar(),
+              const SizedBox(
+                height: 30,
+              ),
+              _buildPatternSentence(),
+              const SizedBox(
+                height: 15,
+              ),
               player,
-              SizedBox(height: 40.0,),
-              Text(
-                'youtube player',
-            ),
-          ],
+              const SizedBox(
+                height: 60,
+              ),
+              _buildQuestionWord(),
+              const SizedBox(
+                height: 80,
+              ),
+              _buildDivider(),
+              const SizedBox(
+                height: 30,
+              ),
+              _buildOptions(),
+              const SizedBox(
+                height: 70,
+              ),
+          ]
           ),
         );
       },
+    );
+  }
+
+
+  Widget _buildProgressBar() {
+    return Center(
+      child: Stack(children: [
+        Container(
+          height: 25,
+          width: 310,
+          decoration: const BoxDecoration(
+            color: Color(0xFFE9E9E9),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+        ),
+        Container(
+          height: 25,
+          width: 29,
+          decoration: const BoxDecoration(
+            color: Color(0xFFFEB800),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget _buildPatternSentence() {
+    return Center(
+      child: Text(
+        "Videoyla öğren",
+            style: TextStyle(
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.w900,
+            ),
+      ),
+    );
+  }
+
+
+  Widget _buildQuestionWord() {
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        height: 50,
+        width: 93,
+        decoration: const BoxDecoration(
+            color: Color(0xFFFEB800),
+            borderRadius: BorderRadius.all(Radius.circular(50))),
+        child: Center(
+          child: Text(
+            "drink",
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOptions() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [_buildOptionText("ye"), _buildOptionText("ayı")],
+        ),
+        const SizedBox(
+          height: 50,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [_buildOptionText("ekmek"), _buildOptionText("iç")],
+        )
+      ],
+    );
+  }
+
+  Widget _buildOptionText(String optionText) {
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        height: 50,
+        width: 93,
+        decoration: const BoxDecoration(
+            color: Color(0xFF6F6F6F),
+            borderRadius: BorderRadius.all(Radius.circular(50))),
+        child: Center(
+          child: Text(
+            optionText,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDivider() {
+    return const Divider(
+      indent: 55,
+      endIndent: 55,
+      color: Color(0xFFFFFFFF),
     );
   }
 }
